@@ -11,7 +11,15 @@ const users_1 = __importDefault(require("./routs/users"));
 // import moviesRoutes from './routs/movies';
 const videojuegos_1 = __importDefault(require("./routs/videojuegos"));
 const middleware_1 = __importDefault(require("./controllers/middleware"));
+const mongoose_1 = __importDefault(require("mongoose"));
 const app = (0, express_1.default)();
+mongoose_1.default.connect(`mongodb+srv://${config_1.default.mongo.username}:${config_1.default.mongo.password}@${config_1.default.mongo.host}`)
+    .then((result) => {
+    logger_1.default.info('mongo is connected');
+})
+    .catch((error) => {
+    logger_1.default.error(error.message, error);
+});
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(body_parser_1.default.json());
 app.use((req, res, next) => {

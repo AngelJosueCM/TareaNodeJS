@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-export interface videojuego extends Document {
+export interface Videojuego extends Document {
   title: string;
   year: number;
   duration: string;
