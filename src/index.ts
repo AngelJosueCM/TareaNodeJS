@@ -3,10 +3,21 @@ import config from './config/config'
 import logger from "./config/logger";
 import bodyParser from "body-parser";
 import userRoutes from './routs/users'
-import moviesRoutes from './routs/movies'
+// import moviesRoutes from './routs/movies';
+import videojuegosRoutes from "./routs/videojuegos";
 import middleware from "./controllers/middleware";
+import mongoose, { Mongoose } from "mongoose";
 
 const app = express();
+mongoose.connect(`mongodb+srv://${config.mongo.username}:${config.mongo.password}@${config.mongo.host}`)
+  .then(
+    (result: Mongoose) => {
+      logger.info('mongo is connected');
+    })
+  .catch((error) => {
+    logger.error(error.message, error);
+  }
+  )
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -22,7 +33,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 //TODO ADD valid routs here
 app.use('/api', userRoutes);
-app.use('/api', middleware.verifiedToken, moviesRoutes);
+app.use('/api', middleware.verifiedToken, videojuegosRoutes);
 
 app.use((_: Request, res: Response) => {
   const error = new Error('NotFound');

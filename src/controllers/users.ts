@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken';
 import config from "../config/config";
-import  User  from "../models/users";
+import  User  from "../interfaces/users";
 // import { use } from "../routs/users";
 import mongoose from "mongoose";
 

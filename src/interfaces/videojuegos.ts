@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { videojuego } from "../models/videojuegos";
+import { Videojuego } from "../models/videojuegos";
 
 const VideojuegosSchema: Schema = new Schema({
         title: {type: String, require: true},
@@ -9,4 +9,4 @@ const VideojuegosSchema: Schema = new Schema({
     timestamps: true
 });
 
-export default mongoose.model<videojuego>('Videojuego', VideojuegosSchema);
+export default mongoose.model<Videojuego>('Videojuego', VideojuegosSchema);
